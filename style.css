@@ -300,30 +300,28 @@ body {
     margin: 5px 0px 5px 0px;
 }
 
-/* Tracking */
+/* ##################################### Tracking ##################################### */
 .linetrack {
     color: #000;
     margin: 5px 0px 5px 0px;
 }
 .timeline-container {
     position: relative;
-    padding-left: 35px; /* Pushes text to the right to make room for the line */
+    padding-left: 35px;
     margin-top: 10px;
     margin-bottom: 30px;
 }
 
-/* The background gray line */
 .timeline-container::before {
     content: '';
     position: absolute;
     top: 5px;
-    left: 11px; /* Centers the line perfectly under the dots */
+    left: 11px;
     height: 100%;
     width: 3px;
     background-color: #ffffff;
 }
 
-/* The BLUE progress line that "slides down" */
 .timeline-progress {
     position: absolute;
     top: -5px;
@@ -332,19 +330,16 @@ body {
     border-radius: 10px;
     background-color: #e7e7e7;
     z-index: 1;
-    /* CHANGE THIS HEIGHT TO MOVE THE BAR DOWN (e.g., 25%, 50%, 75%, 100%) */
     height: 50%; 
-    transition: height 0.5s ease; /* Makes it animate smoothly later */
+    transition: height 0.5s ease;
 }
 
-/* Individual stage wrapper */
 .timeline-step {
     position: relative;
     margin-bottom: 25px;
-    z-index: 2; /* Keeps dots above the lines */
+    z-index: 2;
 }
 
-/* The Circular Dot */
 .timeline-dot {
     position: absolute;
     left: -40px;
@@ -359,7 +354,6 @@ body {
     justify-content: center;
 }
 
-/* When a step is DONE */
 .timeline-step.completed .timeline-dot {
     border-color: #a8a8a8;
     background-color: #a8a8a8;
@@ -370,11 +364,10 @@ body {
     height: 12px;
 }
 
-/* When a step is CURRENTLY HAPPENING */
 .timeline-step.active .timeline-dot {
     /* border-color: #0044cc; */
     background-color: white;
-    border-width: 5px; /* Thicker border to highlight it */
+    border-width: 5px;
 }
 
 .timeline-step.completed .timeline-desc {
