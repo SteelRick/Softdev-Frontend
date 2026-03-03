@@ -35,7 +35,7 @@
                 <h3>- Nutt -</h3>
             </div>
         </div>
-        <div class="welcome-instruction pe-3">กรุณากรอกข้อมูลเพื่อส่งซ่อม</div>
+        <div class="welcome-instruction pe-3" style="font-size: 20px;">กรุณากรอกข้อมูลเพื่อรับเครื่อง</div>
     </div>
 
     <div class="form-container">
@@ -115,30 +115,6 @@
                 </div>
             </div>
 
-            <div class="row mb-3 align-items-center">
-                <div class="col-3 text-end"><label class="form-label m-0">ปัญหา :</label></div>
-                <div class="col-9">
-                    <input type="text" id="inputProblem" class="form-control no-icon" placeholder="เปิดเครื่องไม่ติด/ เครื่องช้า / เพิ่ม SSD / ลงวินโดวส์ใหม่">
-                </div>
-            </div>
-
-            <div class="row mb-3 align-items-center">
-                <div class="col-3 text-end"><label class="form-label m-0">รายละเอียด :</label></div>
-                <div class="col-9">
-                    <input type="text" id="inputDetail" class="form-control no-icon">
-                </div>
-            </div>
-
-            <div class="row mb-3 align-items-center">
-                <div class="col-3 text-end"><label class="form-label m-0">แนบรูป/วิดีโอ :</label></div>
-                <div class="col-8">
-                    <label class="upload-btn">
-                        <i class="fa-solid fa-circle-arrow-up"></i> อัปโหลดรูป/วิดีโอ
-                        <input type="file" style="display: none;" accept="image/*,video/*">
-                    </label>
-                </div>
-            </div>
-
             <hr class="text-muted my-4">
 
             <div class="row g-2">
@@ -156,7 +132,7 @@
                 </div>
             </div>
 
-            <button type="button" class="submit-btn" data-bs-toggle="modal" data-bs-target="#confirmModal" onclick="copyData()">ส่งข้อมูลการซ่อม</button>
+            <button type="button" class="submit-btn" data-bs-toggle="modal" data-bs-target="#confirmModal" onclick="copyData()" style="width: 50%;">ยืนยันข้อมูล</button>
 
         </form>
     </div>
