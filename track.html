@@ -109,7 +109,7 @@
                 <h6 class="fw-bold" style="color: #000f30; font-size: 14px;">ก่อนซ่อม : </h6>
                 <div class="position-relative d-flex align-items-center" style="margin: 0% 10%;">
                     <button class="gallery-arrow left-arrow shadow-sm" onclick="scrollGallery('gallery-before', 'left')"><i class="fa-solid fa-chevron-left"></i></button>
-                    <div class="gallery-scroll d-flex gap-2 w-100" id="gallery-before"></div>
+                    <div class="gallery-scroll d-flex gap-2 w-75" style="margin-left: 35px;" id="gallery-before"></div>
                     <button class="gallery-arrow right-arrow shadow-sm" onclick="scrollGallery('gallery-before', 'right')"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                 <h6 class="fw-bold" style="color: #000f30; font-size: 14px;">เครื่องถึงร้าน : </h6>
                 <div class="position-relative d-flex align-items-center" style="margin: 0% 10%;">
                     <button class="gallery-arrow left-arrow shadow-sm" onclick="scrollGallery('gallery-arrive', 'left')"><i class="fa-solid fa-chevron-left"></i></button>
-                    <div class="gallery-scroll d-flex gap-2 w-100" id="gallery-arrive"></div>
+                    <div class="gallery-scroll d-flex gap-2 w-75" style="margin-left: 35px;" id="gallery-arrive"></div>
                     <button class="gallery-arrow right-arrow shadow-sm" onclick="scrollGallery('gallery-arrive', 'right')"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
@@ -127,7 +127,7 @@
                 <h6 class="fw-bold" style="color: #000f30; font-size: 14px;">อยู่ระหว่างการซ่อม : </h6>
                 <div class="position-relative d-flex align-items-center" style="margin: 0% 10%;">
                     <button class="gallery-arrow left-arrow shadow-sm" onclick="scrollGallery('gallery-during', 'left')"><i class="fa-solid fa-chevron-left"></i></button>
-                    <div class="gallery-scroll d-flex gap-2 w-100" id="gallery-during"></div>
+                    <div class="gallery-scroll d-flex gap-2 w-100" style="margin-left: 35px;" id="gallery-during"></div>
                     <button class="gallery-arrow right-arrow shadow-sm" onclick="scrollGallery('gallery-during', 'right')"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                 <h6 class="fw-bold" style="color: #000f30; font-size: 14px;">ซ่อมเสร็จแล้ว : </h6>
                 <div class="position-relative d-flex align-items-center" style="margin: 0% 10%;">
                     <button class="gallery-arrow left-arrow shadow-sm" onclick="scrollGallery('gallery-after', 'left')"><i class="fa-solid fa-chevron-left"></i></button>
-                    <div class="gallery-scroll d-flex gap-2 w-100" id="gallery-after"></div>
+                    <div class="gallery-scroll d-flex gap-2 w-100" style="margin-left: 35px;" id="gallery-after"></div>
                     <button class="gallery-arrow right-arrow shadow-sm" onclick="scrollGallery('gallery-after', 'right')"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
@@ -159,14 +159,14 @@
             <div class="modal-body p-4" style="margin: -20px auto;">
                 <div class="d-flex justify-content-between align-items-center" style="border-bottom: 1px solid #eee; margin: 10px 10px;">
                     
-                    <div class="queue-number-box d-flex align-items-center">
-                        <div class="icon-circle me-3" style="width: 25px; height: 25px; background-color: #f8f9fa; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #000a1f;">
-                            <i class="fa fa-address-book fs-10"></i>
+                    <div class="queue-number-box d-flex align-items-center" style="background-color: #00194f">
+                        <div class="icon-circle me-3" style="width: 25px; height: 25px; background-color: #f8f9fa; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #00194f;">
+                            <i class="fa fa-address-book fs-10" style="color: #00194f"></i>
                         </div>
                         <h5 class="queue-label fw-bold mb-0" style="font-size: 16px;">คิวงาน : <span class="queue-value" style="font-size: 16px;">A012</span></h5>
                     </div>
 
-                    <div class="text-muted" style="font-size: 14px;">
+                    <div class="text-muted" style="font-size: 12px;">
                         <light>วันที่ออกใบเสนอราคา : </light> <span id="quoteDate" class="text-dark"></span>
                     </div>
                     
@@ -174,42 +174,43 @@
 
                 <div class="mb-2" style="font-size: 15px;">
                     <i class="fa fa-user fs-10"></i>
-                    <strong style="color: #001f61;">ลูกค้า : </strong> <strong id="quoteName"></strong>
-                    <light style="color: #001f61; font-size: 10px;">อุปกรณ์ : </light> <light id="quoteDevice" style="font-size: 10px;"></light>
+                    <strong style="color: #001f61;">ลูกค้า : </strong> <strong style="color: #001f61;" id="quoteName"></strong>
+                    <light style="font-size: 10px;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;อุปกรณ์ : </light> <light id="quoteDevice" style="font-size: 10px;"></light>
                 </div>
 
                 <div class="mb-4 " style="font-size: 10px;">
-                    <light style="color: #001f61;">อาการ/ปัญหา(ที่แจ้งจากลูกค้า) : &emsp;</light> <light id="quoteProblem"></light>
+                    <light>อาการ/ปัญหา(ที่แจ้งจากลูกค้า) : &emsp;</light> <light id="quoteProblem"></light>
                 </div>
 
                 <hr style="border-top: 2px solid #474747; margin: -10px 0px 0px 0px;">
                 <div style="margin: 10px 0px -5px 0px; color: #001f61;"><strong>รายการซ่อม / ค่าใช้จ่าย</strong></div>
 
                 <div class="table-responsive">
-                    <table class="table table-borderless mb-0">
-                        <thead style="border-bottom: 2px solid #eee; background-color: #474747;">
-                            <tr class="text-secondary" style="font-size: 13px;">
-                                <th scope="col" class="pb-2">รายการ</th>
-                                <th scope="col" class="pb-2 text-center" style="width: 80px;">จำนวน</th>
-                                <th scope="col" class="pb-2 text-center" style="width: 80px;">ราคา</th>
-                                <th scope="col" class="pb-2 text-center" style="width: 80px;">รวม</th>
+                    <table class="table table-borderless mb-0" style="margin-top: 10px;">
+                        <thead style="border-bottom: 2px solid #eee;">
+                            <tr class="text-secondary" style="font-size: 14px;">
+                                <th scope="col" class="py-0 itemList" style="background-color: #c9c9c9; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">&emsp;รายการ</th>
+                                <th scope="col" class="itemList text-center" style="width: 70px; background-color: #c9c9c9;">จำนวน</th>
+                                <th scope="col" class="itemList text-center" style="width: 70px; background-color: #c9c9c9;">ราคา</th>
+                                <th scope="col" class="itemList text-center" style="width: 70px; background-color: #c9c9c9; border-top-right-radius: 50px; border-bottom-right-radius: 50px;">รวม</th>
                             </tr>
                         </thead>
-                        <tbody id="quoteTableBody" style="font-size: 14px;">
+                        <tbody id="quoteTableBody" style="font-size: 12px;">
                             </tbody>
                         <tfoot style="border-top: 2px solid #eee;">
                             <tr>
-                                <td colspan="2" class="text-end fw-bold pt-3" style="color: #000a1f;">ยอดสุทธิ:</td>
-                                <td class="text-end fw-bold pt-3" style="color: #d9534f; font-size: 16px;"><span id="quoteTotalCost"></span>.-</td>
+                                <td class="text-end fw-bold pt-3 text-center"></td>
+                                <td class="text-end pt-3" style="font-weight: 100; font-size: 14px; color: white; background-color: #00194f; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">ยอดสุทธิ</td>
+                                <td class="text-end fw-bold pt-3 text-center" style="color: white; font-size: 16px; background-color: #00194f;"><span id="quoteTotalCost"></span></td>
+                                <td class="text-end pt-3 text-center" style="color: white; font-size: 14px; background-color: #00194f; border-top-right-radius: 50px; border-bottom-right-radius: 50px;">บาท</td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
 
-                <div class="text-center text-muted mt-4 mb-2" style="font-size: 13px; font-style: italic;">
-                    <i class="fa-solid fa-file-invoice-dollar fs-1 mb-2 text-light"></i><br>
-                    รายการประเมินราคาซ่อมจะแสดงที่นี่
-                </div>
+                <hr style="border-top: 2px solid #474747;">
+
+                <div id="quoteActionArea" style="margin: -10px auto 10px auto;"></div>
 
             </div>
         </div>

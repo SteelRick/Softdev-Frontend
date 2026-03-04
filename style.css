@@ -453,8 +453,7 @@ body {
     overflow-x: auto;
     scroll-behavior: smooth;
     flex-wrap: nowrap;
-    padding-bottom: 5px; /* slight padding for shadow */
-    /* Hide scrollbar for Chrome, Safari and Opera */
+    padding-bottom: 5px;
 }
 
 .gallery-scroll::-webkit-scrollbar {
@@ -462,8 +461,8 @@ body {
 }
 
 .gallery-scroll {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
 }
 
 .gallery-arrow {
@@ -486,3 +485,12 @@ body {
 }
 .left-arrow { left: -10px; }
 .right-arrow { right: -10px; }
+
+.table>:not(caption)>*>* {
+    padding: .2rem .2rem !important;
+}
+
+.my-2 {
+    margin-top: -10px !important;
+    margin-bottom: 10px !important;
+}

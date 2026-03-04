@@ -260,37 +260,126 @@ function renderGallery(containerId, imagesArray) {
 }
 
 function showQuotationModal() {
-    // 1. Fill basic data
     document.getElementById("quoteName").innerText = repairRequestData.name;
     document.getElementById("quoteDevice").innerText = repairRequestData.device;
     document.getElementById("quoteProblem").innerText = repairRequestData.problem;
     document.getElementById("quoteDate").innerText = repairRequestData.date;
 
-    // 2. Build the table rows and calculate total
     const tableBody = document.getElementById("quoteTableBody");
     let tableHtml = "";
     let totalCost = 0;
+    let rowTotal = 0;
 
     quotationItems.forEach(item => {
+        rowTotal = item.amount * item.price;
         tableHtml += `
             <tr>
-                <td class="pt-3 text-start">${item.name}</td>
+                <td class="pt-3 text-start">&emsp;${item.name}</td>
                 <td class="pt-3 text-center">${item.amount}</td>
                 <td class="pt-3 text-center">${item.price.toLocaleString()}</td>
-                <td class="pt-3 text-center">${item.price*item.amount}</td>
+                <td class="pt-3 text-center">${rowTotal.toLocaleString()}</td>
             </tr>
         `;
         totalCost += (item.amount * item.price);
     });
 
-    // 3. Inject rows and total into HTML
     tableBody.innerHTML = tableHtml;
     document.getElementById("quoteTotalCost").innerText = totalCost.toLocaleString();
 
-    // 4. Trigger the Bootstrap modal to open
+    currentTotalCost = totalCost;
+    renderQuoteApproval();
+
     const quoteModal = new bootstrap.Modal(document.getElementById('quotationModal'));
     quoteModal.show();
 }
+
+// ############################ Quotation-sequence ############################
+let currentTotalCost = 0;
+
+function renderQuoteApproval() {
+    const container = document.getElementById("quoteActionArea");
+    container.innerHTML = `
+        <strong style="color: #001f61; font-size: 16px;">หมายเหตุจากช่าง</strong>
+        <div class="p-3 mb-3 rounded" style="background-color: #f8f9fa; border: 1px solid #e9ecef; margin-left: 20px">
+            <p class="text-muted mb-0" style="font-size: 14px;">ปกติดีครับ</p>
+        </div>
+        <div class="w-100 mt-4 clearfix">
+            <button class="btn rounded-pill px-4 shadow-sm float-start" onclick="handleRejectQuote()" style="background-color: #dfdfdf; font-size: 12px;">ยกเลิกการซ่อม</button>
+            <button class="btn rounded-pill px-4 shadow-sm float-end" onclick="handleApproveQuote()" style="background-color: #1549b8; color: white; font-size: 14px;">ยืนยันการซ่อม</button>
+        </div>
+    `;
+}
+
+function handleRejectQuote() {
+    currentStageIndex = 11;
+    renderTimeline();
+
+    const quoteModal = bootstrap.Modal.getInstance(document.getElementById('quotationModal'));
+    quoteModal.hide();
+}
+
+function handleApproveQuote() {
+    renderQuotePayment();
+}
+
+function renderQuotePayment() {
+    const container = document.getElementById("quoteActionArea");
+    container.innerHTML = `
+        <div class="text-center">
+            <h6 style="color: #001f61;" class="fw-bold">ช่องทางการชำระเงิน</h6>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code" class="img-fluid my-2 shadow-sm" style="width: 140px; height: 140px; border-radius: 10px;">
+            
+            <h4 class="fw-bold my-2" style="font-size: 14px; color:#001f61;">${currentTotalCost.toLocaleString()} บาท</h4>
+            
+            <div class="d-flex justify-content-center gap-2 mt-3 pt-2" style="border-top: 1px dashed #ddd;">
+                <button class="btn btn-sm btn-outline-success" onclick="handlePaymentResult(true)">จำลอง: จ่ายสำเร็จ</button>
+                <button class="btn btn-sm btn-outline-danger" onclick="handlePaymentResult(false)">จำลอง: จ่ายล้มเหลว</button>
+            </div>
+        </div>
+    `;
+}
+
+function handlePaymentResult(isSuccess) {
+    const container = document.getElementById("quoteActionArea");
+    if (isSuccess) {
+        container.innerHTML = `
+            <div class="text-center py-3">
+                <i class="fa-solid fa-circle-check text-success mb-2" style="font-size: 60px;"></i>
+                <h5 class="fw-bold text-success">ชำระเงินสำเร็จ</h5>
+            </div>
+        `;
+        
+        setTimeout(() => {
+            currentStageIndex = 8;
+            renderTimeline();
+            const quoteModal = bootstrap.Modal.getInstance(document.getElementById('quotationModal'));
+            quoteModal.hide();
+        }, 3000);
+        
+    } else {
+        container.innerHTML = `
+            <div class="text-center py-3">
+                <i class="fa-solid fa-circle-xmark text-danger mb-2" style="font-size: 60px;"></i>
+                <h5 class="fw-bold text-danger">ชำระเงินล้มเหลว</h5>
+                <button class="btn btn-outline-secondary btn-sm mt-2 rounded-pill px-4" onclick="renderQuotePayment()">ลองอีกครั้ง</button>
+            </div>
+        `;
+    }
+}
+
+function handleRejectQuote() {
+    window.location.href = 'return.html';
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetStage = urlParams.get('stage');
+
+    if (targetStage !== null) {
+        currentStageIndex = parseInt(targetStage, 10);
+        renderTimeline(); 
+    }
+});
 
 loadRequestDetails();
 renderTimeline();
