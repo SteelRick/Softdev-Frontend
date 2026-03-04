@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
     <title>I SOM CPU - ส่งข้อมูลการซ่อม</title>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
  
@@ -16,7 +19,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<p style="display: none;">Your LINE ID: <span id="user-id" style="color: blue; font-weight: bold;">กำลังโหลด...</span></p>
 <div class="mobile-container">
     
     <div class="top-header">
@@ -29,10 +32,10 @@
 
     <div class="welcome-banner p-0">  
         <div class="user-info-box">
-            <img src="https://placehold.co/100x100?text=Profile" alt="Profile" class="profile-pic">
+            <img id="profileImg" src="https://placehold.co/100x100?text=Profile" alt="Profile" class="profile-pic">
             <div class="welcome-text">
                 <h2>ยินดีต้อนรับ</h2>
-                <h3>- Nutt -</h3>
+                <h3 id="displayName">- Nutt -</h3>
             </div>
         </div>
         <div class="welcome-instruction pe-3">กรุณากรอกข้อมูลเพื่อส่งซ่อม</div>
@@ -77,23 +80,101 @@
                 
                 <div class="row g-2 mb-2">
                     <div class="col-6">
-                        <select id="inputSubDistrict" class="form-select no-icon">
+                        <input id="inputSubDistrict" class="form-select no-icon" type="text" placeholder="ตำบล/แขวง">
+                        <!-- <select id="inputSubDistrict" class="form-select no-icon">
                             <option selected>ตำบล/แขวง</option>
                             <option value="บัง">บัง</option>
-                        </select>
+                        </select> -->
                     </div>
                     <div class="col-6">
-                        <select id="inputDistrict" class="form-select no-icon">
+                        <input id="inputDistrict" class="form-select no-icon" type="text" placeholder="อำเภอ/เขต">
+                        <!-- <select id="inputDistrict" class="form-select no-icon">
                             <option selected>อำเภอ/เขต</option>
                             <option value="ลาดบัง">ลาดบัง</option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 <div class="row g-2">
                     <div class="col-6">
-                        <select id="inputProvince" class="form-select no-icon">
-                            <option selected>จังหวัด</option>
+                        <select id="inputProvince" class="form-select no-icon" aria-placeholder="จังหวัด">
+                            <!-- <option selected>จังหวัด</option> -->
                             <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                            <option value="กระบี่">กระบี่</option>
+                            <option value="กาญจนบุรี">กาญจนบุรี</option>
+                            <option value="กาฬสินธุ์">กาฬสินธุ์</option>
+                            <option value="กำแพงเพชร">กำแพงเพชร</option>
+                            <option value="ขอนแก่น">ขอนแก่น</option>
+                            <option value="จันทบุรี">จันทบุรี</option>
+                            <option value="ฉะเชิงเทรา">ฉะเชิงเทรา</option>
+                            <option value="ชลบุรี">ชลบุรี</option>
+                            <option value="ชัยนาท">ชัยนาท</option>
+                            <option value="ชัยภูมิ">ชัยภูมิ</option>
+                            <option value="ชุมพร">ชุมพร</option>
+                            <option value="เชียงราย">เชียงราย</option>
+                            <option value="เชียงใหม่">เชียงใหม่</option>
+                            <option value="ตรัง">ตรัง</option>
+                            <option value="ตราด">ตราด</option>
+                            <option value="ตาก">ตาก</option>
+                            <option value="นครนายก">นครนายก</option>
+                            <option value="นครปฐม">นครปฐม</option>
+                            <option value="นครพนม">นครพนม</option>
+                            <option value="นครราชสีมา">นครราชสีมา</option>
+                            <option value="นครศรีธรรมราช">นครศรีธรรมราช</option>
+                            <option value="นครสวรรค์">นครสวรรค์</option>
+                            <option value="นนทบุรี">นนทบุรี</option>
+                            <option value="นราธิวาส">นราธิวาส</option>
+                            <option value="น่าน">น่าน</option>
+                            <option value="บึงกาฬ">บึงกาฬ</option>
+                            <option value="บุรีรัมย์">บุรีรัมย์</option>
+                            <option value="ปทุมธานี">ปทุมธานี</option>
+                            <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์</option>
+                            <option value="ปราจีนบุรี">ปราจีนบุรี</option>
+                            <option value="ปัตตานี">ปัตตานี</option>
+                            <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา</option>
+                            <option value="พะเยา">พะเยา</option>
+                            <option value="พังงา">พังงา</option>
+                            <option value="พัทลุง">พัทลุง</option>
+                            <option value="พิจิตร">พิจิตร</option>
+                            <option value="พิษณุโลก">พิษณุโลก</option>
+                            <option value="เพชรบุรี">เพชรบุรี</option>
+                            <option value="เพชรบูรณ์">เพชรบูรณ์</option>
+                            <option value="แพร่">แพร่</option>
+                            <option value="ภูเก็ต">ภูเก็ต</option>
+                            <option value="มหาสารคาม">มหาสารคาม</option>
+                            <option value="มุกดาหาร">มุกดาหาร</option>
+                            <option value="แม่ฮ่องสอน">แม่ฮ่องสอน</option>
+                            <option value="ยโสธร">ยโสธร</option>
+                            <option value="ยะลา">ยะลา</option>
+                            <option value="ร้อยเอ็ด">ร้อยเอ็ด</option>
+                            <option value="ระนอง">ระนอง</option>
+                            <option value="ระยอง">ระยอง</option>
+                            <option value="ราชบุรี">ราชบุรี</option>
+                            <option value="ลพบุรี">ลพบุรี</option>
+                            <option value="ลำปาง">ลำปาง</option>
+                            <option value="ลำพูน">ลำพูน</option>
+                            <option value="เลย">เลย</option>
+                            <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+                            <option value="สกลนคร">สกลนคร</option>
+                            <option value="สงขลา">สงขลา</option>
+                            <option value="สตูล">สตูล</option>
+                            <option value="สมุทรปราการ">สมุทรปราการ</option>
+                            <option value="สมุทรสงคราม">สมุทรสงคราม</option>
+                            <option value="สมุทรสาคร">สมุทรสาคร</option>
+                            <option value="สระแก้ว">สระแก้ว</option>
+                            <option value="สระบุรี">สระบุรี</option>
+                            <option value="สิงห์บุรี">สิงห์บุรี</option>
+                            <option value="สุโขทัย">สุโขทัย</option>
+                            <option value="สุพรรณบุรี">สุพรรณบุรี</option>
+                            <option value="สุราษฎร์ธานี">สุราษฎร์ธานี</option>
+                            <option value="สุรินทร์">สุรินทร์</option>
+                            <option value="หนองคาย">หนองคาย</option>
+                            <option value="หนองบัวลำภู">หนองบัวลำภู</option>
+                            <option value="อ่างทอง">อ่างทอง</option>
+                            <option value="อำนาจเจริญ">อำนาจเจริญ</option>
+                            <option value="อุดรธานี">อุดรธานี</option>
+                            <option value="อุตรดิตถ์">อุตรดิตถ์</option>
+                            <option value="อุทัยธานี">อุทัยธานี</option>
+                            <option value="อุบลราชธานี">อุบลราชธานี</option>
                         </select>
                     </div>
                     <div class="col-6">
@@ -213,6 +294,93 @@
         </div>
     </div>
 </div>
+
+<script>
+    let userId = "";
+    initLiff();
+    async function initLiff() {
+            try {
+                await liff.init({ liffId: "2009179011-zi2JZ0h4" }); 
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                } else {
+                    const profile = await liff.getProfile();
+                    const userId = profile.userId;
+                    console.log(profile.userId);
+                    console.log(profile.displayName);
+                    console.log(profile.pictureUrl);
+                    console.log(profile.statusMessage);
+
+                    // แสดงผลบนหน้าจอ
+                    document.getElementById('user-id').innerText = userId;
+                    document.getElementById('profileImg').src = profile.pictureUrl;
+                    document.getElementById('displayName').textContent = profile.displayName;
+                }
+            } catch (error) {
+                console.error("LIFF Error:", error);
+                document.getElementById('user-id').innerText = "เกิดข้อผิดพลาด: " + error.message;
+            }
+        }
+
+    Confirmform = document.getElementById('ConfirmDate');
+    Confirmform.addEventListener("click",async function (e){
+        e.preventDefault();
+            console.log("กำลังส่งข้อมูล..."); // เช็คว่าฟังก์ชันทำงานไหม
+            // ✅ ดึงค่าโดยตรงจากตัวหนังสือสีน้ำเงินที่โชว์บนหน้าจอ (span id="user-id")
+            const lineIdFromSpan = document.getElementById('user-id').innerText;
+
+            // ตรวจสอบเบื้องต้น ถ้ายังโหลดไม่เสร็จไม่ให้ส่ง
+            if (!lineIdFromSpan || lineIdFromSpan === "กำลังโหลด...") {
+                alert("กรุณารอให้ระบบโหลด LINE ID ให้สำเร็จก่อนครับ");
+                return;
+            }
+            // 1. สร้างวันที่ปัจจุบัน (Today) ในรูปแบบ YYYY-MM-DD ให้ตรงกับเวลาไทย (Local Time)
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0'); 
+            const dd = String(today.getDate()).padStart(2, '0');
+            const todayFormatted = `${yyyy}-${mm}-${dd}`; // จะได้ "2026-03-01"
+            
+            // ... (ส่วนการเตรียม data เหมือนเดิม)
+            const repairData = {
+                // ตรวจสอบชื่อ Key ด้านซ้ายมือให้ตรงกับ Schema ใน FastAPI เป๊ะๆ
+                lineUserId: lineIdFromSpan,
+                fullName: document.getElementById('inputName').value,
+                phoneNumber: document.getElementById('inputPhone').value,
+                queueId: "A" + Math.floor(Math.random() * 900000 + 100000),
+                deviceType: document.getElementById('inputDevice').value,
+                problemType: document.getElementById('inputProblem').value,
+                problemDetail: document.getElementById('inputDetail').value,
+                address: document.getElementById("modalAddress").textContent,
+                deliveryDate: todayFormatted,
+                pickupDate: document.getElementById('inputDate').value,
+            };
+
+            try {
+                const response = await fetch('https://uncautiously-overwealthy-margie.ngrok-free.dev/repairs/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(repairData)
+                });
+
+                const result = await response.json(); // อ่านคำตอบจาก Server
+
+                if (response.ok) {
+                    alert("แจ้งซ่อมสำเร็จ! เจ้าหน้าที่จะติดต่อกลับโดยเร็ว");
+                    liff.closeWindow();
+                } else {
+                    // ถ้า Server ตอบกลับมาเป็น Error (เช่น 422 หรือ 500)
+                    alert("Server Error: " + JSON.stringify(result.detail));
+                }
+            } catch (error) {
+                // ถ้าเชื่อมต่อ Server ไม่ได้เลย (เช่น URL ผิด หรือติด CORS)
+                alert("Network Error: " + error.message);
+            }
+        
+    });
+</script>
+
+
 
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
